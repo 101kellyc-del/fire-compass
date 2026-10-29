@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>財務自由羅盤</title>
+<meta name="description" content="算出你的財務自由數字、達成年齡，用蒙地卡羅模擬檢驗退休計畫，並找出拖慢你的拿鐵因子。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M16 5l4 11-4 11-4-11z" fill="currentColor"/></svg>
+      <div>
+        <h1>財務自由羅盤</h1>
+        <p class="sub">不是「存多少錢」，而是「什麼時候可以不用再為錢工作」</p>
+      </div>
+    </div>
+    <button class="ghost" id="themeBtn" type="button" aria-label="切換深淺色">◐</button>
+  </div>
+  <nav class="wrap tabs" role="tablist">
+    <button role="tab" data-tab="guide">① 使用說明</button>
+    <button role="tab" data-tab="fire">② 自由試算</button>
+    <button role="tab" data-tab="mc">③ 壓力模擬</button>
+    <button role="tab" data-tab="latte">④ 拿鐵因子</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+<!-- ========== 使用說明 ========== -->
+<section class="panel" id="tab-guide">
+  <div class="hero card">
+    <h2>三分鐘上手</h2>
+    <p>這個工具回答三個問題：<b>我需要多少錢才自由？</b>、<b>市場不好時計畫撐得住嗎？</b>、<b>哪些日常花費正在偷走我的自由時間？</b>所有金額都以「今天的購買力」計算，不用自己扣通膨。</p>
+    <button class="primary" type="button" data-goto="fire">開始試算 →</button>
+  </div>
+
+  <div class="steps">
+    <article class="card step">
+      <span class="num">1</span>
+      <h3>自由試算</h3>
+      <p>填入年齡、目前資產、每月可存金額與<b>退休後每月想花多少</b>。羅盤會算出：</p>
+      <ul>
+        <li><b>自由數字</b>：投資組合要多大才能永續提領</li>
+        <li><b>自由年齡</b>：照現在的存錢速度，幾歲達標</li>
+        <li><b>Coast FI</b>：存到這個數字後，就算不再存錢，65 歲時也會自動長到自由數字</li>
+      </ul>
+      <p class="tip">💡 拖動任何欄位，圖表立即更新；資料只存在你的瀏覽器。</p>
+    </article>
+    <article class="card step">
+      <span class="num">2</span>
+      <h3>壓力模擬</h3>
+      <p>真實市場每年漲跌不一。這一頁用<b>蒙地卡羅法</b>隨機產生 1,000 種市場走勢，看你的錢有幾成機率撐到預期壽命。</p>
+      <ul>
+        <li>成功率 ≥ 85%：計畫穩健</li>
+        <li>70–85%：建議保留彈性（例如壞年少花一點）</li>
+        <li>&lt; 70%：延後退休、降低支出或多存一些</li>
+      </ul>
+      <p class="tip">💡 灰色帶狀區是「90% 的情境落在這裡」，中間線是中位數。</p>
+    </article>
+    <article class="card step">
+      <span class="num">3</span>
+      <h3>拿鐵因子</h3>
+      <p>列出固定的小額支出（咖啡、訂閱、外送…）。每一項都會換算成：</p>
+      <ul>
+        <li>30 年的機會成本（若改拿去投資）</li>
+        <li>讓自由數字增加多少</li>
+        <li><b>讓你晚幾個月自由</b></li>
+      </ul>
+      <p class="tip">💡 目的不是什麼都不買，而是把錢花在真正在乎的地方。</p>
+    </article>
+  </div>
+
+  <div class="card">
+    <h3>名詞小辭典</h3>
+    <dl class="glossary">
+      <dt>FIRE</dt><dd>Financial Independence, Retire Early。財務獨立後，工作變成選擇而不是必要。</dd>
+      <dt>提領率（4% 法則）</dt><dd>每年從投資組合拿出多少比例當生活費。歷史研究顯示 4% 在 30 年內大多不會花光；想退休得早、撐得久，可設 3–3.5% 更保守。自由數字 = 年支出 ÷ 提領率。</dd>
+      <dt>實質報酬</dt><dd>扣掉通膨後的報酬率。名目 6%、通膨 2%，實質約 3.9%。本工具內部都用實質報酬，所以結果是「今天的錢」。</dd>
+      <dt>波動度</dt><dd>年報酬的標準差。全球股票約 15–18%，股債 60/40 約 10%，愈高代表起伏愈大。</dd>
+      <dt>Coast FI</dt><dd>不再追加投入，光靠複利也能在 65 歲達到自由數字的資產門檻。達到後你可以改做薪水較低但更喜歡的工作。</dd>
+      <dt>退休後其他收入</dt><dd>勞保年金、租金、兼職收入等。它會直接抵減需要從投資組合提領的金額。</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <h3>常見問題</h3>
+    <details><summary>資料會上傳嗎？</summary><p>不會。所有計算都在你的瀏覽器裡完成，資料存在本機（localStorage）。清除瀏覽器資料就會消失。</p></details>
+    <details><summary>報酬率要填多少？</summary><p>填「名目」年化報酬即可，通膨另外填。保守可用 5%，股票為主可用 6–7%。不確定就用壓力模擬看看不同數字的成功率。</p></details>
+    <details><summary>為什麼試算說能退休，模擬成功率卻不高？</summary><p>試算假設每年報酬都一樣，模擬則包含「退休頭幾年剛好遇到崩盤」的順序風險。兩者差距愈大，代表你的計畫愈依賴好運。</p></details>
+    <details><summary>數字精準嗎？</summary><p>這是規劃與教育用途的估算，不是投資建議。實際結果會受市場、稅務、費用與人生變化影響。</p></details>
+  </div>
+</section>
+
+<!-- ========== 自由試算 ========== -->
+<section class="panel" id="tab-fire" hidden>
+  <div class="grid-2">
+    <div class="card">
+      <h2>你的現況</h2>
+      <div class="fields">
+        <label>目前年齡<input type="number" data-k="age" min="15" max="80" step="1"></label>
+        <label>預期壽命<input type="number" data-k="life" min="60" max="110" step="1"></label>
+        <label>目前投資資產（萬元）<input type="number" data-k="assets" min="0" step="10"></label>
+        <label>每月可存／投資（元）<input type="number" data-k="save" min="0" step="1000"></label>
+        <label>退休後每月生活費（元）<input type="number" data-k="expense" min="0" step="1000"></label>
+        <label>退休後每月其他收入（元）<input type="number" data-k="other" min="0" step="1000"><small>勞保年金、租金等</small></label>
+      </div>
+      <h3 class="mt">市場假設</h3>
+      <div class="fields">
+        <label>年化報酬率（%）<input type="number" data-k="ret" step="0.5"></label>
+        <label>通膨率（%）<input type="number" data-k="inf" step="0.5"></label>
+        <label>提領率（%）<input type="number" data-k="wr" min="1" max="10" step="0.25"></label>
+      </div>
+      <button class="ghost small" type="button" id="resetBtn">恢復預設值</button>
+    </div>
+
+    <div class="stack">
+      <div class="kpis">
+        <div class="kpi card"><span class="lbl">自由數字</span><b id="kFire">–</b><small id="kFireSub"></small></div>
+        <div class="kpi card"><span class="lbl">預估自由年齡</span><b id="kAge">–</b><small id="kAgeSub"></small></div>
+        <div class="kpi card"><span class="lbl">目前進度</span><b id="kProg">–</b><div class="bar"><i id="kBar"></i></div></div>
+      </div>
+      <div class="card">
+        <h3>里程碑</h3>
+        <ol class="miles" id="miles"></ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chart-head">
+      <h3>一生資產曲線（今日幣值）</h3>
+      <div class="legend"><span><i class="sw s1"></i>投資資產</span><span><i class="sw s2 dash"></i>自由數字</span></div>
+    </div>
+    <div class="chart" id="fireChart"></div>
+    <p class="note" id="fireNote"></p>
+  </div>
+</section>
+
+<!-- ========== 壓力模擬 ========== -->
+<section class="panel" id="tab-mc" hidden>
+  <div class="grid-2">
+    <div class="card">
+      <h2>模擬設定</h2>
+      <p class="muted">年齡、資產、存錢與支出沿用「自由試算」的數字。</p>
+      <div class="fields">
+        <label>計畫退休年齡<input type="number" data-k="retireAge" min="20" max="90" step="1"><small id="retireHint"></small></label>
+        <label>年報酬波動度（%）<input type="number" data-k="vol" min="0" max="40" step="1"></label>
+        <label>壞年少花（%）<input type="number" data-k="flex" min="0" max="50" step="5"><small>報酬為負的年度，生活費自動打折</small></label>
+      </div>
+      <button class="primary" type="button" id="rerunBtn">重新模擬 1,000 次</button>
+    </div>
+    <div class="stack">
+      <div class="kpis">
+        <div class="kpi card"><span class="lbl">成功率</span><b id="mRate">–</b><small id="mVerdict"></small></div>
+        <div class="kpi card"><span class="lbl">壽終資產中位數</span><b id="mMed">–</b><small>今日幣值</small></div>
+        <div class="kpi card"><span class="lbl">最差 10% 情境</span><b id="mWorst">–</b><small id="mWorstSub"></small></div>
+      </div>
+      <div class="card">
+        <h3>怎麼解讀</h3>
+        <p id="mAdvice" class="muted"></p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="chart-head">
+      <h3>1,000 種市場走勢</h3>
+      <div class="legend"><span><i class="sw band"></i>5%–95% 區間</span><span><i class="sw band2"></i>25%–75%</span><span><i class="sw s1"></i>中位數</span></div>
+    </div>
+    <div class="chart" id="mcChart"></div>
+  </div>
+</section>
+
+<!-- ========== 拿鐵因子 ========== -->
+<section class="panel" id="tab-latte" hidden>
+  <div class="card">
+    <h2>小錢，換多少自由？</h2>
+    <p class="muted">輸入固定花費。計算假設：若省下這筆錢，每月多存這筆金額，且退休後也不再需要它。</p>
+    <form class="latte-add" id="latteForm">
+      <input name="name" placeholder="項目，例如：手搖飲" required>
+      <input name="amt" type="number" min="1" placeholder="金額（元）" required>
+      <select name="freq">
+        <option value="30">每天</option>
+        <option value="4.33">每週</option>
+        <option value="1" selected>每月</option>
+        <option value="0.0833">每年</option>
+      </select>
+      <button class="primary" type="submit">加入</button>
+    </form>
+    <div class="table-wrap">
+      <table class="latte">
+        <thead><tr><th>項目</th><th>每月</th><th>30 年機會成本</th><th>自由數字 +</th><th>延後自由</th><th></th></tr></thead>
+        <tbody id="latteBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card summary" id="latteSum"></div>
+</section>
+
+</main>
+
+<footer class="wrap foot">
+  <p>本工具以月複利、實質報酬（扣除通膨）計算，結果僅供規劃與教育參考，不構成投資建議。資料只儲存在你的瀏覽器。</p>
+</footer>
+
+<div class="tooltip" id="tip" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
